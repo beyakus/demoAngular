@@ -1,0 +1,73 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 center animated fadeIn">
+        <h3 class="display-4">Reporte de incidencias</h3>
+      </div>
+    </div>
+    <div class="row animated bounceInLeft">
+      <div class="col-md-6">
+        <button class="btn btn-outline-primary" (click)="limpiarForm()" data-toggle="modal" data-target="#altaReporte">
+          <i class="fa fa-plus" aria-hidden="true"></i> Nuevo
+        </button>
+      </div>
+      <div class="col-md-6">
+        <div class="alert animated fadeIn" [ngClass]="{'alert-success':statusResponse, 'alert-danger':!statusResponse}" 
+             role="alert" *ngIf="alert">
+          <strong> {{ mensaje}} </strong>
+        </div>
+      </div>
+    </div>
+    <div class="row animated bounceInUp">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Autor</th>
+            <th>Titulo</th>
+            <th>Detalle</th>
+            <th>Fecha de reporte</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reporte of reportes">
+            <td> {{ reporte.author_association }} </td>
+            <td> {{ reporte.title }} </td>
+            <td> {{ reporte.body }} </td>
+            <td> {{ reporte.updated_at | date }} </td>
+            <td> {{ reporte.state }} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!--Modal-->
+<div class="modal" tabindex="-1" role="dialog" id="altaReporte">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="fa fa-calendar-o" aria-hidden="true"></i> Nuevo reporte</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="altaReporte(formAlta)" #formAlta="ngForm">
+          <input type="text" class="form-control" placeholder="Titulo" name="titulo" 
+                 [(ngModel)]="alta.titulo" required>
+          <textarea name="detalle" id="" cols="30" rows="5" class="form-control wrapper-fiel" placeholder="Descripción del problema"
+                    [(ngModel)]="alta.detalle" required>
+          </textarea>
+          <button type="submit" class="btn btn-primary wrapper-fiel" [disabled]="!formAlta.valid">
+            <i class="fa fa-plus" aria-hidden="true"></i> Agregar
+          </button>
+          <button type="button" class="btn btn-secondary wrapper-fiel" data-dismiss="modal">
+            <i class="fa fa-ban" aria-hidden="true"></i> Cancelar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

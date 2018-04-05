@@ -1,0 +1,26 @@
+/*
+Elaborado por Daniel Garcia
+*/
+
+.center{
+    text-align: center;
+}
+.wrapper-fiel{
+    margin-top: 10px;
+}
+.footer{
+    height: 80px;
+    color:white;
+}
+.jumbotron {
+    padding: 0rem 0rem !important;
+    margin-bottom: 0rem !important;
+    background-color: #262626;
+    border-radius: .3rem;
+}
+.block-text{
+    display: block;
+}
+.color{
+    color:white !important;
+}
